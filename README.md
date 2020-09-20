@@ -35,6 +35,13 @@ Professor Práticas - *undefined*
 
 ## Datas
 
+|Trabalho|Data|
+|-|-|
+|1º Trabalho Intermédia|04/10/2020|
+|1º Trabalho Final|25/10/2020|
+|2º Trabalho Final|22/11/2020|
+|3º Trabalho Final|03/01/2020|
+
 ---
 
 ## Teóricas
