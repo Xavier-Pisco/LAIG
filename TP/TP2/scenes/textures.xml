@@ -1,0 +1,136 @@
+<lsf>
+	<initials>
+		<reference length="5" />
+		<!-- axis length; "0" means no axis displayed -->
+		<root id="rootNode" />
+		<!-- identifier of root node of the scene graph; this node -->
+		<!-- must be defined in one of the following NODE declarations -->
+	</initials>
+	<views default="mainCamera">
+		<!-- at least one of the following type of cameras must be declared -->
+		<perspective id="mainCamera" near="0.1" far="500" angle="45">
+			<!-- main overview to the backyard-->
+			<from x="13" y="7" z="20" /> <!-- from top right -->
+			<to x="13" y="7" z="0" /> <!-- to the middle of the backyard (assuming room with size 10x5x10 -->
+		</perspective>
+	</views>
+	<illumination>
+		<ambient r="0.2" g="0.2" b="0.2" a="1.0" /> <!-- global ambient -->
+		<background r="0" g="0" b="0" a="1.0" /> <!-- background color. Black to begin, can change later -->
+	</illumination>
+
+
+	<lights>
+		<!-- NOTE: this block "light" must be repeated as necessary with different "id". At least one light should be present, and a maximum of eight lights is accepted. -->
+		<light id="dayLight">
+			<!-- main light to iluminate the room from above -->
+			<enable value="1" />
+			<!-- enable/disable -->
+			<position x="0" y="30" z="0" w="0" /> <!-- Point light to simulate a lamp --> <!-- light position; w=1: point light; w=0: directional light -->
+			<ambient r="0.5" g="0.5" b="0.5" a="1.0" /> <!-- ambient component -->
+			<diffuse r="1.0" g="1.0" b="1.0" a="1.0" /> <!-- diffuse component -->
+			<specular r="1.0" g="1.0" b="1.0" a="1.0" /> <!-- specular component -->
+		</light>
+	</lights>
+	<textures>
+        <texture id="ballTexture" path="./scenes/images/ball.jpg" />
+	</textures>
+	<materials>
+		<!-- NOTE: the "MATERIAL" block may be repeated as required. Each defined material
+         requires a distinct "id". At least one material should be present. -->
+		<material id="mainMaterial">
+			<!-- white material for when there's no material (rootNode and possibly others) -->
+			<shininess value="20" />
+			<ambient r="1.0" g="1.0" b="1.0" a="1.0" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
+			<specular r="0.6" g="0.6" b="0.6" a="1.0" />
+			<emissive r="0.0" g="0.0" b="0.0" a="1.0" />
+		</material>
+	</materials>
+	<nodes>
+		<node id="rootNode">
+			<!-- defines one intermediate node; may be repeated as necessary -->
+			<!-- next two lines are mandatory -->
+			<material id="mainMaterial" /> <!-- this superimposes the material received from parent node id="null" maintains material from parent node -->
+
+			<texture id="ballTexture">
+				<!-- declared texture superimposes the texture received from parent node id="null" maintains texture from parent node id="clear" clears texture declaration received from parent node -->
+				<amplification afs="1.0" aft="1.0" /> <!-- for primitives = dx/afs, dy/aft -->
+			</texture>
+
+			<!-- geom. transf. are optional and may be repeated, in any order, as necessary: -->
+			<transformations></transformations>
+			<descendants>
+				<noderef id="rectangle1" />
+				<noderef id="rectangle2" />
+				<noderef id="rectangle3" />
+				<noderef id="triangle1" />
+				<noderef id="triangle2" />
+				<noderef id="triangle3" />
+			</descendants>
+		</node>
+		<node id="rectangle1">
+			<material id="null" />
+			<texture id="null">
+				<amplification afs="1.0" aft="1.0" />
+			</texture>
+
+			<transformations></transformations>
+			<descendants>
+				<leaf type="rectangle" x1="1" y1="1" x2="6" y2="6" />
+			</descendants>
+		</node>
+		<node id="rectangle2">
+			<material id="null" />
+			<texture id="null">
+				<amplification afs="5" aft="5" />
+			</texture>
+
+			<transformations></transformations>
+			<descendants>
+				<leaf type="rectangle" x1="7" y1="1" x2="12" y2="6" />
+			</descendants>
+		</node>
+		<node id="rectangle3">
+			<material id="null" />
+			<texture id="clear">
+				<amplification afs="1.0" aft="1.0" />
+			</texture>
+
+			<transformations></transformations>
+			<descendants>
+				<leaf type="rectangle" x1="1" y1="7" x2="6" y2="12" />
+			</descendants>
+		</node>
+		<node id="triangle1">
+			<material id="null" />
+			<texture id="null">
+				<amplification afs="1.0" aft="1.0" />
+			</texture>
+			<transformations></transformations>
+			<descendants>
+				<leaf type="triangle" x1="13" y1="1" x2="15.5" y2="6" x3="18" y3="1" />
+			</descendants>
+		</node>
+		<node id="triangle2">
+			<material id="null" />
+			<texture id="null">
+				<amplification afs="5" aft="5" />
+			</texture>
+			<transformations></transformations>
+			<descendants>
+				<leaf type="triangle" x1="19" y1="1" x2="21.5" y2="6" x3="24" y3="1" />
+			</descendants>
+		</node>
+		<node id="triangle3">
+			<material id="null" />
+			<texture id="clear">
+				<amplification afs="1.0" aft="1.0" />
+			</texture>
+			<transformations></transformations>
+			<descendants>
+				<leaf type="triangle" x1="13" y1="7" x2="15.5" y2="12" x3="18" y3="7" />
+			</descendants>
+		</node>
+	</nodes>
+</lsf>
